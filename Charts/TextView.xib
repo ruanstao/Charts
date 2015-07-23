@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="gwb-aG-kOl" customClass="TextView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PaoPao.png" translatesAutoresizingMaskIntoConstraints="NO" id="jhG-5h-SOB">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2I-GZ-2Tz">
+                    <rect key="frame" x="0.0" y="0.0" width="111" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="CTz-W8-CvF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="jhG-5h-SOB" secondAttribute="bottom" id="NLd-cz-VLD"/>
+                <constraint firstAttribute="trailing" secondItem="jhG-5h-SOB" secondAttribute="trailing" id="U5Q-Dk-BCc"/>
+                <constraint firstItem="jhG-5h-SOB" firstAttribute="leading" secondItem="gwb-aG-kOl" secondAttribute="leading" id="WWv-RV-5VX"/>
+                <constraint firstItem="T2I-GZ-2Tz" firstAttribute="leading" secondItem="gwb-aG-kOl" secondAttribute="leading" id="au5-vC-fng"/>
+                <constraint firstAttribute="trailing" secondItem="T2I-GZ-2Tz" secondAttribute="trailing" id="bSZ-Pn-xTO"/>
+                <constraint firstItem="T2I-GZ-2Tz" firstAttribute="top" secondItem="gwb-aG-kOl" secondAttribute="top" id="eeg-qt-tXT"/>
+                <constraint firstItem="jhG-5h-SOB" firstAttribute="top" secondItem="gwb-aG-kOl" secondAttribute="top" id="xFO-vw-rO8"/>
+            </constraints>
+            <connections>
+                <outlet property="textLabel" destination="T2I-GZ-2Tz" id="CVk-KV-00f"/>
+            </connections>
+            <point key="canvasLocation" x="573" y="347"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="PaoPao.png" width="139" height="60"/>
+    </resources>
+</document>
