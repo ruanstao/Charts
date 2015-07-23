@@ -60,6 +60,8 @@
 {
 //    self.frame = [[UIScreen mainScreen] applicationFrame];
     _interval = Define_Interval;
+    _minInterval = 20;
+    _maxInterval = 200;
     _yLabelFont = [UIFont systemFontOfSize:14];
     _xLabelFont = [UIFont systemFontOfSize:15];
     _valueLabelFont = [UIFont systemFontOfSize:22];
@@ -70,7 +72,7 @@
     self.countTextColor = [UIColor greenColor];
     self.lineSetArray = [[NSMutableArray alloc] init];
     self.chartScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
-    NSInteger count = self.chartDataArray.count;
+    NSInteger count = 12;
     self.chartScrollView.contentSize = CGSizeMake(_interval * count, Define_ChartsHeight);
     [self addSubview:self.chartScrollView];
     [self addTitleView];
@@ -98,11 +100,11 @@
 
     _interval *= recognizer.scale;
     recognizer.scale = 1;
-    if (_interval < 20) {
-        _interval = 20;
+    if (_interval < self.minInterval) {
+        _interval = self.minInterval;
     }
-    if (_interval > 200) {
-        _interval = 200;
+    if (_interval > self.maxInterval) {
+        _interval = self.maxInterval;
     }
     self.chartScrollView.contentSize = CGSizeMake(_interval * self.chartDataArray.count, Define_ChartsHeight);
     [self setNeedsDisplay];
@@ -119,15 +121,11 @@
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-//- (void)addLineChartDataSet:(LineChartDataSet *)lineSet
-//{
-//    [self.lineSetArray addObject:lineSet];
-//    [self setNeedsDisplay];
-//}
 
 - (void) setChartDataArray:(NSMutableArray *)chartDataArray
 {
     _chartDataArray = chartDataArray;
+    self.chartScrollView.contentSize = CGSizeMake(_interval * chartDataArray.count, Define_ChartsHeight);
     NSMutableArray *pricePointArr = [NSMutableArray array];
     NSMutableArray *countPointArr = [NSMutableArray array];
     NSInteger maxSalePrice = [self maxSalePrice:chartDataArray];

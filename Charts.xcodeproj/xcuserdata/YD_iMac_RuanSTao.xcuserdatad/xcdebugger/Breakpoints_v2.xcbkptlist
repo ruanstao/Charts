@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Charts/ChartsView.m"
-            timestampString = "459326557.874461"
+            timestampString = "459328030.658259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
-            landmarkName = "-addDushWithYInterval:andSubYInterval:"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-addMatrixWithYInterval:andSubYInterval:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,13 +58,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Charts/ChartsView.m"
-            timestampString = "459326557.874461"
+            timestampString = "459328030.658259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "333"
-            endingLineNumber = "333"
-            landmarkName = "@implementation ChartsView"
-            landmarkType = "3">
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "-addMatrixWithYInterval:andSubYInterval:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

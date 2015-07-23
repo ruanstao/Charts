@@ -29,6 +29,15 @@ typedef void(^SelectIndex)(NSInteger index,CircleView *circleView);
  *  x方向间隔
  */
 @property (nonatomic,assign) float interval;
+/**
+ *  x方向，最大间距 default is 200
+ */
+@property (nonatomic,assign) float maxInterval;
+/**
+ *  x方向，最小间距 default is 20
+ */
+@property (nonatomic,assign) float minInterval;
+
 
 /**
  *  Y方向字体，X方向字体，价格字体，说明字体

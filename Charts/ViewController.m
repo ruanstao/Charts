@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.chartsView = [[ChartsView alloc] initWithFrame:CGRectMake(0, 100, 320, 500)];
-//     [self.view addSubview:self.chartsView];
+     [self.view addSubview:self.chartsView];
     self.chartsView.backgroundColor = [UIColor whiteColor];
     [self getData];
 //    _chartsView.frame =
@@ -64,12 +64,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    if (indexPath.row == 10) {
-        _chartsView.frame = CGRectMake(0, 0, 320, 400);
-        [cell.contentView addSubview:_chartsView];
-//        cell.setNeedsDisplay;
-        cell.selected = NO;
-    }
+//    if (indexPath.row == 10) {
+//        _chartsView.frame = CGRectMake(0, 0, 320, 400);
+//        [cell.contentView addSubview:_chartsView];
+////        cell.setNeedsDisplay;
+//        cell.selected = NO;
+//    }
     cell.textLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
     return cell;
 }
