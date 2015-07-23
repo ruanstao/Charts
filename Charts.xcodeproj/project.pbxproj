@@ -17,6 +17,7 @@
 		67A43A4B1B54EBAA00D35511 /* ChartsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A43A4A1B54EBAA00D35511 /* ChartsView.m */; };
 		67A43A4E1B54ED1B00D35511 /* LineChartDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A43A4D1B54ED1B00D35511 /* LineChartDataSet.m */; };
 		67A43A541B54F95900D35511 /* ChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 67A43A531B54F95900D35511 /* ChartData.m */; };
+		DA0F294F1B60CCE300881E6E /* RetainCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0F294E1B60CCE300881E6E /* RetainCircleViewController.m */; };
 		DA6A05821B58CFB400AFC788 /* LineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A05811B58CFB400AFC788 /* LineLayer.m */; };
 		DA6A05851B59032C00AFC788 /* TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A05841B59032C00AFC788 /* TextView.m */; };
 		DA6A05871B5904B200AFC788 /* PaoPao.png in Resources */ = {isa = PBXBuildFile; fileRef = DA6A05861B5904B200AFC788 /* PaoPao.png */; };
@@ -54,6 +55,8 @@
 		67A43A4D1B54ED1B00D35511 /* LineChartDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartDataSet.m; sourceTree = "<group>"; };
 		67A43A521B54F95900D35511 /* ChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartData.h; sourceTree = "<group>"; };
 		67A43A531B54F95900D35511 /* ChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartData.m; sourceTree = "<group>"; };
+		DA0F294D1B60CCE300881E6E /* RetainCircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetainCircleViewController.h; sourceTree = "<group>"; };
+		DA0F294E1B60CCE300881E6E /* RetainCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetainCircleViewController.m; sourceTree = "<group>"; };
 		DA6A05801B58CFB400AFC788 /* LineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineLayer.h; sourceTree = "<group>"; };
 		DA6A05811B58CFB400AFC788 /* LineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineLayer.m; sourceTree = "<group>"; };
 		DA6A05831B59032C00AFC788 /* TextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextView.h; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 				67A43A281B54E68F00D35511 /* AppDelegate.m */,
 				67A43A2A1B54E68F00D35511 /* ViewController.h */,
 				67A43A2B1B54E68F00D35511 /* ViewController.m */,
+				DA0F294D1B60CCE300881E6E /* RetainCircleViewController.h */,
+				DA0F294E1B60CCE300881E6E /* RetainCircleViewController.m */,
 				67A43A491B54EBAA00D35511 /* ChartsView.h */,
 				67A43A4A1B54EBAA00D35511 /* ChartsView.m */,
 				67A43A521B54F95900D35511 /* ChartData.h */,
@@ -260,6 +265,7 @@
 				67A43A2C1B54E68F00D35511 /* ViewController.m in Sources */,
 				67A43A291B54E68F00D35511 /* AppDelegate.m in Sources */,
 				67A43A261B54E68F00D35511 /* main.m in Sources */,
+				DA0F294F1B60CCE300881E6E /* RetainCircleViewController.m in Sources */,
 				67A43A4E1B54ED1B00D35511 /* LineChartDataSet.m in Sources */,
 				DAEE75E61B5672D4008C0103 /* CircleView.m in Sources */,
 				67A43A4B1B54EBAA00D35511 /* ChartsView.m in Sources */,

@@ -13,7 +13,7 @@
 #import "LineLayer.h"
 #import "TextView.h"
 
-#define Define_TitleHeight 70
+#define Define_TitleHeight 50
 #define Define_ChartsHeight 340
 #define Define_CircleDiameter 30
 #define Define_X_Y_LableWidth 45
@@ -34,7 +34,7 @@ typedef void(^SelectIndex)(NSInteger index,CircleView *circleView);
  */
 @property (nonatomic,assign) float maxInterval;
 /**
- *  x方向，最小间距 default is 20
+ *  x方向，最小间距 default is 40
  */
 @property (nonatomic,assign) float minInterval;
 
@@ -54,12 +54,13 @@ typedef void(^SelectIndex)(NSInteger index,CircleView *circleView);
  */
 @property (nonatomic,strong)UIColor *priceLineColor;
 
-@property (nonatomic,strong)UIColor *priceTextColor;
+@property (nonatomic,strong)UIColor *countLineColor;
 
 /**
  *  线上字体颜色
  */
-@property (nonatomic,strong)UIColor *countLineColor;
+
+@property (nonatomic,strong)UIColor *priceTextColor;
 
 @property (nonatomic,strong)UIColor *countTextColor;
 

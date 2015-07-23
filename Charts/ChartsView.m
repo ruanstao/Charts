@@ -59,8 +59,9 @@
 - (void) initializeData
 {
 //    self.frame = [[UIScreen mainScreen] applicationFrame];
+    self.backgroundColor = [UIColor whiteColor];
     _interval = Define_Interval;
-    _minInterval = 20;
+    _minInterval = 40;
     _maxInterval = 200;
     _yLabelFont = [UIFont systemFontOfSize:14];
     _xLabelFont = [UIFont systemFontOfSize:15];
@@ -72,6 +73,8 @@
     self.countTextColor = [UIColor greenColor];
     self.lineSetArray = [[NSMutableArray alloc] init];
     self.chartScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
+    self.chartScrollView.showsHorizontalScrollIndicator = NO;
+    self.chartScrollView.showsVerticalScrollIndicator = NO;
     NSInteger count = 12;
     self.chartScrollView.contentSize = CGSizeMake(_interval * count, Define_ChartsHeight);
     [self addSubview:self.chartScrollView];
@@ -81,22 +84,11 @@
     [self.chartScrollView addGestureRecognizer:pinch];
 }
 
+#pragma mark - 捏合手势
+
 - (void)pinchGesture:(UIPinchGestureRecognizer *)recognizer
 {
     NSLog(@"%f,%f",recognizer.scale,recognizer.velocity);
-
-    [self.lineSetArray enumerateObjectsUsingBlock:^(LineChartDataSet *lineSet, NSUInteger idx, BOOL *stop) {
-//        __block NSInteger index = -1;
-        [lineSet.pointArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            CircleView *circle = (CircleView *)[self.chartScrollView viewWithTag:lineSet.lineType * Tag_CircleTag + idx];
-            if (circle.isSelected) {
-//                index = [[NSNumber numberWithUnsignedInteger:idx] integerValue];
-                [self addTextView:[self.chartDataArray objectAtIndex:idx] andLineSet:lineSet andUpFrame:circle.frame animation:NO];
-                *stop = YES;
-            }
-        }];
-
-    }];
 
     _interval *= recognizer.scale;
     recognizer.scale = 1;
@@ -107,17 +99,11 @@
         _interval = self.maxInterval;
     }
     self.chartScrollView.contentSize = CGSizeMake(_interval * self.chartDataArray.count, Define_ChartsHeight);
+    
     [self setNeedsDisplay];
 }
 
-- (void)addTitleView
-{
-    UILabel * titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), Define_TitleHeight)];
-    titleView.text = @"价格趋势";
-    titleView.textAlignment = NSTextAlignmentCenter;
-    titleView.adjustsFontSizeToFitWidth = YES;
-    [self addSubview:titleView];
-}
+
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -198,6 +184,63 @@
 }
 
 #pragma mark 线框
+- (void)addTitleView
+{
+    UILabel * titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), Define_TitleHeight)];
+    titleView.text = @"价格趋势";
+    titleView.textAlignment = NSTextAlignmentCenter;
+    titleView.adjustsFontSizeToFitWidth = YES;
+    [self addSubview:titleView];
+}
+
+- (void)addLegendTextLabel
+{
+    CGFloat y = Define_TitleHeight + Define_ChartsHeight + 35;
+    CGFloat x = 25;
+    CGFloat lineWidth = 30 , textWidth = 50;
+    CGFloat height = 35;
+    CGRect salePriceColorFrame = CGRectMake(x, y + height / 2, lineWidth, 2);
+    CGRect salePriceLabelFrame = CGRectMake(x + lineWidth + 10, y, textWidth, height);
+    CGRect saleCountColorFrame = CGRectMake(CGRectGetMaxX(salePriceLabelFrame) + 30, y + height / 2, lineWidth, 2);
+    CGRect saleCountLabelFrame = CGRectMake(CGRectGetMaxX(saleCountColorFrame) + 10, y, textWidth, height);
+    UIView *salePriceColor = (UIView *)[self viewWithTag:Tag_LegendLabelTag + 1];
+    UILabel *salePriceLabel = (UILabel *)[self viewWithTag:Tag_LegendLabelTag + 2];
+    UIView *saleCountColor =  (UIView *)[self viewWithTag:Tag_LegendLabelTag + 3];
+    UILabel *saleCountLabel = (UILabel *)[self viewWithTag:Tag_LegendLabelTag + 4];
+    if (nil == salePriceColor) {
+        salePriceColor = [[UIView alloc] init];
+        salePriceColor.tag = Tag_LegendLabelTag +1;
+        [self addSubview:salePriceColor];
+    }
+    if (nil == salePriceLabel) {
+        salePriceLabel = [[UILabel alloc] init];
+        salePriceLabel.tag = Tag_LegendLabelTag +2;
+        [self addSubview:salePriceLabel];
+    }
+    if (nil == saleCountColor) {
+        saleCountColor = [[UIView alloc] init];
+        saleCountColor.tag = Tag_LegendLabelTag +3;
+        [self addSubview:saleCountColor];
+    }
+    if (nil == saleCountLabel) {
+        saleCountLabel = [[UILabel alloc] init];
+        saleCountLabel.tag = Tag_LegendLabelTag +4;
+        [self addSubview:saleCountLabel];
+    }
+    salePriceColor.frame = salePriceColorFrame;
+    salePriceLabel.frame = salePriceLabelFrame;
+    saleCountColor.frame = saleCountColorFrame;
+    saleCountLabel.frame = saleCountLabelFrame;
+    
+    salePriceColor.layer.cornerRadius = 1;
+    saleCountColor.layer.cornerRadius = 1;
+    salePriceLabel.font = self.legendFont;
+    saleCountLabel.font = self.legendFont;
+    salePriceColor.backgroundColor = self.priceLineColor;
+    salePriceLabel.text = @"成交价";
+    saleCountColor.backgroundColor = self.countLineColor;
+    saleCountLabel.text = @"成交量";
+}
 
 - (void) addMatrix
 {
@@ -422,6 +465,7 @@
         textView.tag = Tag_TextViewTag + lineSet.lineType;
         textView.textLabel.font = self.valueLabelFont;
         textView.textLabel.textColor = lineSet.textColor;
+        [self.chartScrollView addSubview:textView];
     }else{
         textView.alpha = 0;
     }
@@ -433,7 +477,18 @@
         textView.textLabel.text = [NSString stringWithFormat:@"成交%ld套",data.saleCount];
     }
     [textView showWithAnimation:animation];
-    [self.chartScrollView addSubview:textView];
+}
+
+- (void) resetTextViewWithLineSet:(LineChartDataSet *)lineSet
+{
+    [lineSet.pointArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        CircleView *circle = (CircleView *)[self.chartScrollView viewWithTag:lineSet.lineType * Tag_CircleTag + idx];
+        if (circle.isSelected) {
+            [self addTextView:[self.chartDataArray objectAtIndex:idx] andLineSet:lineSet andUpFrame:circle.frame animation:NO];
+            *stop = YES;
+        }
+    }];
+
 }
 
 - (void) removeTextViewWithLineSet:(LineChartDataSet *)lineSet
@@ -444,54 +499,7 @@
     }
 }
 
-- (void)addLegendTextLabel
-{
-    CGFloat y = Define_TitleHeight + Define_ChartsHeight + 35;
-    CGFloat x = 25;
-    CGFloat lineWidth = 30 , textWidth = 50;
-    CGFloat height = 35;
-    CGRect salePriceColorFrame = CGRectMake(x, y + height / 2, lineWidth, 2);
-    CGRect salePriceLabelFrame = CGRectMake(x + lineWidth + 10, y, textWidth, height);
-    CGRect saleCountColorFrame = CGRectMake(CGRectGetMaxX(salePriceLabelFrame) + 30, y + height / 2, lineWidth, 2);
-    CGRect saleCountLabelFrame = CGRectMake(CGRectGetMaxX(saleCountColorFrame) + 10, y, textWidth, height);
-    UIView *salePriceColor = (UIView *)[self viewWithTag:Tag_LegendLabelTag + 1];
-    UILabel *salePriceLabel = (UILabel *)[self viewWithTag:Tag_LegendLabelTag + 2];
-    UIView *saleCountColor =  (UIView *)[self viewWithTag:Tag_LegendLabelTag + 3];
-    UILabel *saleCountLabel = (UILabel *)[self viewWithTag:Tag_LegendLabelTag + 4];
-    if (nil == salePriceColor) {
-        salePriceColor = [[UIView alloc] init];
-        salePriceColor.tag = Tag_LegendLabelTag +1;
-        [self addSubview:salePriceColor];
-    }
-    if (nil == salePriceLabel) {
-        salePriceLabel = [[UILabel alloc] init];
-        salePriceLabel.tag = Tag_LegendLabelTag +2;
-        [self addSubview:salePriceLabel];
-    }
-    if (nil == saleCountColor) {
-        saleCountColor = [[UIView alloc] init];
-        saleCountColor.tag = Tag_LegendLabelTag +3;
-        [self addSubview:saleCountColor];
-    }
-    if (nil == saleCountLabel) {
-        saleCountLabel = [[UILabel alloc] init];
-        saleCountLabel.tag = Tag_LegendLabelTag +4;
-        [self addSubview:saleCountLabel];
-    }
-    salePriceColor.frame = salePriceColorFrame;
-    salePriceLabel.frame = salePriceLabelFrame;
-    saleCountColor.frame = saleCountColorFrame;
-    saleCountLabel.frame = saleCountLabelFrame;
-    
-    salePriceColor.layer.cornerRadius = 1;
-    saleCountColor.layer.cornerRadius = 1;
-    salePriceLabel.font = self.legendFont;
-    saleCountLabel.font = self.legendFont;
-    salePriceColor.backgroundColor = self.priceLineColor;
-    salePriceLabel.text = @"成交价";
-    saleCountColor.backgroundColor = self.countLineColor;
-    saleCountLabel.text = @"成交量";
-}
+#pragma mark 绘制
 
 - (void)drawRect:(CGRect)rect
 {
@@ -504,11 +512,9 @@
             
             [self addCircle:lineSet];
             
+            [self resetTextViewWithLineSet:lineSet];
+
         }];
 }
 
-- (void) clickIndex:(clickIndex)clickBlock
-{
-    
-}
 @end

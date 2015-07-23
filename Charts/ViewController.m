@@ -20,8 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.chartsView = [[ChartsView alloc] initWithFrame:CGRectMake(0, 100, 320, 500)];
-     [self.view addSubview:self.chartsView];
+//     [self.view addSubview:self.chartsView];
     self.chartsView.backgroundColor = [UIColor whiteColor];
     [self getData];
 //    _chartsView.frame =
@@ -39,10 +40,6 @@
         data.saleMonth = [NSString stringWithFormat:@"%d/%d",((i + 8)>12)?15:14, ((i + 8)%12)?:12];
         [arr addObject:data];
     }
-//    LineChartDataSet * lineSet = [[LineChartDataSet alloc] init];
-//    lineSet.chartDataArray = arr;
-//    lineSet.lineColor = [UIColor blueColor];
-//    [self.chartsView addLineChartDataSet:lineSet];
     self.chartsView.chartDataArray = arr;
 
 }
@@ -64,13 +61,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-//    if (indexPath.row == 10) {
-//        _chartsView.frame = CGRectMake(0, 0, 320, 400);
-//        [cell.contentView addSubview:_chartsView];
-////        cell.setNeedsDisplay;
-//        cell.selected = NO;
-//    }
+    if (indexPath.row == 10) {
+        _chartsView.frame = CGRectMake(0, 0, 320, 400);
+        [cell.contentView addSubview:_chartsView];
+//        cell.setNeedsDisplay;
+        cell.selected = NO;
+    }
     cell.textLabel.text = [NSString stringWithFormat:@"%d",indexPath.row];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RetainCircleViewController * rc = [[RetainCircleViewController alloc] init];
+    [self.navigationController pushViewController:rc animated:YES];
 }
 @end
