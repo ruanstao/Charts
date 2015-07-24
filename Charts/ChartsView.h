@@ -45,7 +45,7 @@ typedef void(^SelectIndex)(NSInteger index,CircleView *circleView);
 @property (nonatomic,strong) UIFont *yLabelFont, *xLabelFont, *valueLabelFont, *legendFont;
 
 /**
- *  ChartData Array
+ *  ChartData 数组
  */
 @property (nonatomic,strong) NSMutableArray *chartDataArray;
 
@@ -57,7 +57,7 @@ typedef void(^SelectIndex)(NSInteger index,CircleView *circleView);
 @property (nonatomic,strong)UIColor *countLineColor;
 
 /**
- *  线上字体颜色
+ *  线上文本框字体颜色
  */
 
 @property (nonatomic,strong)UIColor *priceTextColor;
