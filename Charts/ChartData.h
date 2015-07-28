@@ -10,10 +10,17 @@
 
 @interface ChartData : NSObject
 
-@property (nonatomic,assign) NSInteger salePrice;
+@property (nonatomic,assign) NSInteger cjAvgPrice;
 
-@property (nonatomic,assign) NSInteger saleCount;
+@property (nonatomic,assign) NSInteger cjCount;
 
-@property (nonatomic,strong) NSString *saleMonth;
+@property (nonatomic,strong) NSString *cjMonth;
 
+@property (nonatomic,strong) NSString *lpId;
 @end
+//{
+//    "lpId": 2193,
+//    "cjMonth": "2014-10",
+//    "cjCount": 3,
+//    "cjAvgPrice": 4900.54
+//},

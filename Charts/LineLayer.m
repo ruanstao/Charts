@@ -85,7 +85,7 @@
 - (CGPoint) transformPoint:(CGPoint) unTransformPoint
 {
     CGFloat y = Define_ChartsHeight * 4.0f / 5.0f * unTransformPoint.y + Define_ChartsHeight / 5.0f + Define_TitleHeight;
-    return CGPointMake(unTransformPoint.x * self.lineInterval , y);
+    return CGPointMake(Define_X_PushOff + unTransformPoint.x * self.lineInterval , y);
 }
 
 - (CGPoint)maxHeightPoint:(NSArray *) dataArr

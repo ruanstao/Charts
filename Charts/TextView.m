@@ -27,20 +27,23 @@
 
 - (void) showWithAnimation:(BOOL)animation
 {
-    if (animation) {
-        [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            self.alpha = 1;
-            self.transform = CGAffineTransformMakeScale(1.1, 1.1);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-                self.transform = CGAffineTransformIdentity;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (animation) {
+            [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                self.alpha = 1;
+                self.transform = CGAffineTransformMakeScale(1.1, 1.1);
             } completion:^(BOOL finished) {
-                
+                [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                    self.transform = CGAffineTransformIdentity;
+                } completion:^(BOOL finished) {
+                    
+                }];
             }];
-        }];
-    }else{
-        self.alpha = 1;
-    }
+        }else{
+            self.alpha = 1;
+        }
+    });
+
 
 }
 

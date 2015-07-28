@@ -13,11 +13,12 @@
 #import "LineLayer.h"
 #import "TextView.h"
 
-#define Define_TitleHeight 50
-#define Define_ChartsHeight 340
+#define Define_TitleHeight 48
+#define Define_ChartsHeight 217
 #define Define_CircleDiameter 30
 #define Define_X_Y_LableWidth 45
 #define Define_Interval 130
+#define Define_X_PushOff 50
 
 typedef void(^SelectIndex)(NSInteger index,CircleView *circleView);
 

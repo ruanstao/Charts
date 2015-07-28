@@ -37,9 +37,9 @@
     for (int i = 0; i < 12; i++) {
         
         ChartData * data = [[ChartData alloc] init];
-        data.salePrice = random() % 10000 +(random()%10)*10000;
-        data.saleCount = random() % 50;
-        data.saleMonth = [NSString stringWithFormat:@"%d/%d",((i + 8)>12)?15:14, ((i + 8)%12)?:12];
+        data.cjAvgPrice = random() % 10000 +(random()%10)*10000;
+        data.cjCount = random() % 50;
+        data.cjMonth = [NSString stringWithFormat:@"%d/%d",((i + 8)>12)?15:14, ((i + 8)%12)?:12];
         [arr addObject:data];
     }
     self.chartsView.chartDataArray = arr;

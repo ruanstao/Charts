@@ -47,7 +47,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "310"
             endingLineNumber = "310"
-            landmarkName = "-addMatrixWithYInterval:andSubYInterval:"
+            landmarkName = "-addTextLabelWithYInterval:andSubYInterval:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
