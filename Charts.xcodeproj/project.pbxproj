@@ -20,8 +20,8 @@
 		DA0F294F1B60CCE300881E6E /* RetainCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0F294E1B60CCE300881E6E /* RetainCircleViewController.m */; };
 		DA6A05821B58CFB400AFC788 /* LineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A05811B58CFB400AFC788 /* LineLayer.m */; };
 		DA6A05851B59032C00AFC788 /* TextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A05841B59032C00AFC788 /* TextView.m */; };
-		DA6A05871B5904B200AFC788 /* PaoPao.png in Resources */ = {isa = PBXBuildFile; fileRef = DA6A05861B5904B200AFC788 /* PaoPao.png */; };
 		DA6A05891B59052100AFC788 /* TextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA6A05881B59052100AFC788 /* TextView.xib */; };
+		DAEE2ADF1B69C9000008A2FC /* ChartsTextViewBgImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DAEE2ADE1B69C9000008A2FC /* ChartsTextViewBgImg@2x.png */; };
 		DAEE75E61B5672D4008C0103 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEE75E51B5672D4008C0103 /* CircleView.m */; };
 /* End PBXBuildFile section */
 
@@ -61,8 +61,8 @@
 		DA6A05811B58CFB400AFC788 /* LineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineLayer.m; sourceTree = "<group>"; };
 		DA6A05831B59032C00AFC788 /* TextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextView.h; sourceTree = "<group>"; };
 		DA6A05841B59032C00AFC788 /* TextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextView.m; sourceTree = "<group>"; };
-		DA6A05861B5904B200AFC788 /* PaoPao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PaoPao.png; sourceTree = "<group>"; };
 		DA6A05881B59052100AFC788 /* TextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextView.xib; sourceTree = "<group>"; };
+		DAEE2ADE1B69C9000008A2FC /* ChartsTextViewBgImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ChartsTextViewBgImg@2x.png"; sourceTree = "<group>"; };
 		DAEE75E41B5672D4008C0103 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
 		DAEE75E51B5672D4008C0103 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +106,7 @@
 		67A43A221B54E68F00D35511 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				DAEE2ADE1B69C9000008A2FC /* ChartsTextViewBgImg@2x.png */,
 				67A43A271B54E68F00D35511 /* AppDelegate.h */,
 				67A43A281B54E68F00D35511 /* AppDelegate.m */,
 				67A43A2A1B54E68F00D35511 /* ViewController.h */,
@@ -123,7 +124,6 @@
 				DA6A05831B59032C00AFC788 /* TextView.h */,
 				DA6A05841B59032C00AFC788 /* TextView.m */,
 				DA6A05881B59052100AFC788 /* TextView.xib */,
-				DA6A05861B5904B200AFC788 /* PaoPao.png */,
 				67A43A4C1B54ED1B00D35511 /* LineChartDataSet.h */,
 				67A43A4D1B54ED1B00D35511 /* LineChartDataSet.m */,
 				67A43A2D1B54E68F00D35511 /* Main.storyboard */,
@@ -240,11 +240,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA6A05871B5904B200AFC788 /* PaoPao.png in Resources */,
 				67A43A2F1B54E68F00D35511 /* Main.storyboard in Resources */,
 				67A43A341B54E68F00D35511 /* LaunchScreen.xib in Resources */,
 				DA6A05891B59052100AFC788 /* TextView.xib in Resources */,
 				67A43A311B54E68F00D35511 /* Images.xcassets in Resources */,
+				DAEE2ADF1B69C9000008A2FC /* ChartsTextViewBgImg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

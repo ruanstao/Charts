@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PaoPao.png" translatesAutoresizingMaskIntoConstraints="NO" id="jhG-5h-SOB">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChartsTextViewBgImg.png" translatesAutoresizingMaskIntoConstraints="NO" id="jhG-5h-SOB">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2I-GZ-2Tz">
@@ -40,6 +40,6 @@
         </view>
     </objects>
     <resources>
-        <image name="PaoPao.png" width="139" height="60"/>
+        <image name="ChartsTextViewBgImg.png" width="96" height="45"/>
     </resources>
 </document>
