@@ -20,6 +20,8 @@
 #define Define_Interval 130
 #define Define_X_PushOff 50
 
+#define mChartsRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 typedef void(^SelectIndex)(NSInteger index,CircleView *circleView);
 
 @interface ChartsView : UIView
@@ -69,5 +71,10 @@ typedef void(^SelectIndex)(NSInteger index,CircleView *circleView);
  *  选择后回调block，注意循环引用，慎用
  */
 @property (nonatomic,strong) SelectIndex selectIndexblock;
+
+/**
+ *  文字提示框背景图片
+ */
+@property (nonatomic,strong) UIImage *textViewBackgroundImage;
 
 @end

@@ -18,9 +18,9 @@
 
 @interface ChartsView()
 {
-    NSInteger _displayPriceList;
-    NSInteger _displayCountList;
-    NSInteger _oldSelectIndex;
+    CGFloat _displayPriceList;
+    CGFloat _displayCountList;
+    CGFloat _oldSelectIndex;
     CAShapeLayer *_matrixLayer;
     CAShapeLayer *_matrixSubLayer;
     CAShapeLayer *_dushLayer;
@@ -70,15 +70,15 @@
     _xLabelFont = [UIFont systemFontOfSize:15];
     _valueLabelFont = [UIFont systemFontOfSize:22];
     _legendFont = [UIFont systemFontOfSize:16];
-    self.priceLineColor = [UIColor blueColor];
-    self.priceTextColor = [UIColor redColor];
-    self.countLineColor = [UIColor greenColor];
-    self.countTextColor = [UIColor greenColor];
+    self.priceLineColor = mChartsRGB(0x4A90E2);
+    self.priceTextColor = mChartsRGB(0xEF7482);
+    self.countLineColor = mChartsRGB(0x7ED321);
+    self.countTextColor = mChartsRGB(0x7ED321);
     self.lineSetArray = [[NSMutableArray alloc] init];
     self.chartScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     self.chartScrollView.showsHorizontalScrollIndicator = NO;
     self.chartScrollView.showsVerticalScrollIndicator = NO;
-    NSInteger count = 12;
+    CGFloat count = 12;
     self.chartScrollView.contentSize = CGSizeMake(_interval * count, Define_ChartsHeight);
     [self addSubview:self.chartScrollView];
     [self addTitleView];
@@ -118,8 +118,8 @@
     [self.chartScrollView scrollRectToVisible:CGRectMake(self.chartScrollView.contentSize.width - CGRectGetWidth(self.chartScrollView.bounds), 0 , CGRectGetWidth(self.chartScrollView.bounds), CGRectGetHeight(self.chartScrollView.bounds)) animated:NO];
     NSMutableArray *pricePointArr = [NSMutableArray array];
     NSMutableArray *countPointArr = [NSMutableArray array];
-    NSInteger maxSalePrice = [self maxSalePrice:chartDataArray];
-    NSInteger maxSaleCount = [self maxSaleCount:chartDataArray];
+    CGFloat maxSalePrice = [self maxSalePrice:chartDataArray];
+    CGFloat maxSaleCount = [self maxSaleCount:chartDataArray];
     CGFloat priceDivisor = 1;
     CGFloat countDivisor = 1;
     if (maxSalePrice > 10000) {
@@ -162,9 +162,9 @@
     [self.lineSetArray addObject:countLine];
 }
 
-- (NSInteger)displayPriceListNumber:(NSInteger) maxNumber andDivisor:(NSInteger) divisor
+- (CGFloat)displayPriceListNumber:(CGFloat) maxNumber andDivisor:(CGFloat) divisor
 {
-    NSInteger minDivisor = divisor;
+    CGFloat minDivisor = divisor;
     while (minDivisor < maxNumber) {
         minDivisor += divisor;
     }
@@ -173,9 +173,9 @@
 
 #pragma mark 价格最大值
 
-- (NSInteger)maxSalePrice:(NSArray *) dataArr
+- (CGFloat)maxSalePrice:(NSArray *) dataArr
 {
-    __block NSInteger maxSalePrice = 0;
+    __block CGFloat maxSalePrice = 0;
     [dataArr enumerateObjectsUsingBlock:^(ChartData * obj, NSUInteger idx, BOOL *stop) {
         if (obj.cjAvgPrice > maxSalePrice) {
             maxSalePrice = obj.cjAvgPrice;
@@ -186,9 +186,9 @@
 
 #pragma mark 销售量最大值
 
-- (NSInteger) maxSaleCount:(NSArray *) dataArr
+- (CGFloat) maxSaleCount:(NSArray *) dataArr
 {
-    __block NSInteger maxSaleCount = 0;
+    __block CGFloat maxSaleCount = 0;
     [dataArr enumerateObjectsUsingBlock:^(ChartData * obj, NSUInteger idx, BOOL *stop) {
         if (obj.cjCount > maxSaleCount) {
             maxSaleCount = obj.cjCount;
@@ -264,11 +264,11 @@
     [self addTextLabelWithYInterval:5 andSubYInterval:4];
 }
 
-- (void) addTextLabelWithYInterval:(NSInteger)y andSubYInterval:(NSInteger)subY
+- (void) addTextLabelWithYInterval:(CGFloat)y andSubYInterval:(CGFloat)subY
 {
     //两侧 Y 方向
-    NSInteger incrementY = Define_ChartsHeight / y;
-    NSInteger labelHeight = incrementY / subY;
+    CGFloat incrementY = Define_ChartsHeight / y;
+    CGFloat labelHeight = incrementY / subY;
     for (int i = 1; i< y ; i++) {
         CGRect priceFrame = CGRectMake(0,Define_TitleHeight + Define_ChartsHeight - incrementY * i - labelHeight, Define_X_Y_LableWidth,labelHeight);
         UILabel *priceLabel = (UILabel *)[self viewWithTag:Tag_PriceLabelTag + i];
@@ -281,7 +281,7 @@
         priceLabel.font = self.yLabelFont;
         priceLabel.textColor = self.priceLineColor;
         priceLabel.textAlignment = NSTextAlignmentCenter;
-        priceLabel.text = [NSString stringWithFormat:@"%d%@",_displayPriceList / subY * i ,_maxSalePriceAboveTenThousand?@"W":@""];
+        priceLabel.text = [NSString stringWithFormat:@"%.f%@",_displayPriceList / subY * i ,_maxSalePriceAboveTenThousand?@"W":@""];
 
         CGRect countFrame =CGRectMake(CGRectGetWidth(self.bounds) - Define_X_Y_LableWidth,Define_TitleHeight + Define_ChartsHeight - incrementY * i - labelHeight, Define_X_Y_LableWidth, labelHeight);
         UILabel *countLabel  = (UILabel *)[self viewWithTag:Tag_CountLabelTag + i];
@@ -294,12 +294,12 @@
         countLabel.font = self.yLabelFont;
         countLabel.textColor = self.countLineColor;
         countLabel.textAlignment = NSTextAlignmentCenter;
-        countLabel.text = [NSString stringWithFormat:@"%d",_displayCountList / subY * i ];
+        countLabel.text = [NSString stringWithFormat:@"%.f",_displayCountList / subY * i ];
     }
     //X 方向
     CGFloat dateLabelHeight = 30;
     [self.chartDataArray enumerateObjectsUsingBlock:^(ChartData *data, NSUInteger idx, BOOL *stop) {
-        NSInteger index = [[NSNumber numberWithUnsignedInteger:idx] integerValue];
+        CGFloat index = [[NSNumber numberWithUnsignedInteger:idx] integerValue];
         CGRect dateFrame = CGRectMake(Define_X_PushOff + _interval * index  - Define_X_Y_LableWidth / 2,
                                       Define_TitleHeight + Define_ChartsHeight - dateLabelHeight / 2,
                                       Define_X_Y_LableWidth + 20,
@@ -319,9 +319,9 @@
 }
 
 
-- (void) addMatrixWithYInterval:(NSInteger)y andSubYInterval:(NSInteger)subY
+- (void) addMatrixWithYInterval:(CGFloat)y andSubYInterval:(CGFloat)subY
 {
-    NSInteger incrementY = Define_ChartsHeight / y;
+    CGFloat incrementY = Define_ChartsHeight / y;
 //    CGContextSetRGBStrokeColor(context, 0.2f, 0.2f, 0.2f, 0.5f);
     if (_matrixLayer == nil) {
         _matrixLayer = [[CAShapeLayer alloc] init];
@@ -330,7 +330,7 @@
     UIBezierPath *path = [UIBezierPath bezierPath];
     _matrixLayer.fillColor = [UIColor clearColor].CGColor;
     _matrixLayer.lineWidth = 0.5;
-    _matrixLayer.strokeColor = [UIColor grayColor].CGColor;
+    _matrixLayer.strokeColor = mChartsRGB(0xB4B4B4).CGColor;
     for (int i = 1; i< y ; i++) {
         [path moveToPoint:CGPointMake(0, Define_TitleHeight + incrementY * i)];
         [path addLineToPoint:CGPointMake(self.chartScrollView.contentSize.width, Define_TitleHeight + incrementY * i)];
@@ -338,21 +338,21 @@
     _matrixLayer.path = path.CGPath;
 }
 
-- (void) addSubMatrixWithYInterval:(NSInteger)y andSubYInterval:(NSInteger)subY
+- (void) addSubMatrixWithYInterval:(CGFloat)y andSubYInterval:(CGFloat)subY
 {
-    NSInteger incrementY = Define_ChartsHeight / y;
+    CGFloat incrementY = Define_ChartsHeight / y;
     if (nil == _matrixSubLayer) {
         _matrixSubLayer = [[CAShapeLayer alloc] init];
         [self.chartScrollView.layer addSublayer:_matrixSubLayer];
     }
     UIBezierPath *path = [UIBezierPath bezierPath];
     _matrixSubLayer.fillColor = [UIColor clearColor].CGColor;
-    _matrixSubLayer.strokeColor = [UIColor grayColor].CGColor;
+    _matrixSubLayer.strokeColor = mChartsRGB(0xE9E9E9).CGColor;;
     _matrixSubLayer.lineWidth = 0.5;
     for (int i = 0; i< y ; i++) {
         [path moveToPoint:CGPointMake(0, Define_TitleHeight + incrementY * i)];
 //        [path addLineToPoint:CGPointMake(self.chartScrollView.contentSize.width, Define_TitleHeight + incrementY * i)];
-        NSInteger subIncrement = incrementY / subY;
+        CGFloat subIncrement = incrementY / subY;
         for (int sub = 1; sub  < subY; sub++) {
             if (i == 0 && sub ==1) {
                 continue;
@@ -364,7 +364,7 @@
     _matrixSubLayer.path = path.CGPath;
 }
 
-- (void)addDushWithYInterval:(NSInteger)y andSubYInterval:(NSInteger)subY
+- (void)addDushWithYInterval:(CGFloat)y andSubYInterval:(CGFloat)subY
 {
     if (nil == _dushLayer) {
         _dushLayer = [[CAShapeLayer alloc] init];
@@ -377,7 +377,7 @@
     _dushLayer.lineDashPhase = 0;
     _dushLayer.lineDashPattern = @[@6,@3];
     CGFloat startY =  Define_TitleHeight + Define_ChartsHeight / y / subY;
-    NSInteger count = self.chartScrollView.contentSize.width / _interval;
+    CGFloat count = self.chartScrollView.contentSize.width / _interval;
     for (int i = 0 ; i< count ; i++) {
         [path moveToPoint:CGPointMake(Define_X_PushOff + _interval * i,startY)];
         [path addLineToPoint:CGPointMake(Define_X_PushOff + _interval * i, Define_TitleHeight + Define_ChartsHeight)];
@@ -439,7 +439,7 @@
     }];
 }
 
-- (void) selectCircleIndex:(NSInteger) index
+- (void) selectCircleIndex:(CGFloat) index
 {
     [self.lineSetArray enumerateObjectsUsingBlock:^(LineChartDataSet *lineSet, NSUInteger idx, BOOL *stop) {
         if (_oldSelectIndex !=index) {
@@ -473,6 +473,9 @@
         textView.tag = Tag_TextViewTag + lineSet.lineType;
         textView.textLabel.font = self.valueLabelFont;
         textView.textLabel.textColor = lineSet.textColor;
+        if (nil != self.textViewBackgroundImage) {
+            textView.backgroundImageView.image = self.textViewBackgroundImage;
+        }
         [self.chartScrollView addSubview:textView];
     }
     

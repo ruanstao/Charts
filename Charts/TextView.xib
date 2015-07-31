@@ -34,6 +34,7 @@
                 <constraint firstItem="jhG-5h-SOB" firstAttribute="top" secondItem="gwb-aG-kOl" secondAttribute="top" id="xFO-vw-rO8"/>
             </constraints>
             <connections>
+                <outlet property="backgroundImageView" destination="jhG-5h-SOB" id="pWH-0o-Eci"/>
                 <outlet property="textLabel" destination="T2I-GZ-2Tz" id="CVk-KV-00f"/>
             </connections>
             <point key="canvasLocation" x="573" y="347"/>

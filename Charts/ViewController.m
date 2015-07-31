@@ -23,7 +23,14 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.chartsView = [[ChartsView alloc] initWithFrame:CGRectMake(0, 100, 320, 500)];
 //     [self.view addSubview:self.chartsView];
-    self.chartsView.backgroundColor = [UIColor whiteColor];
+    self.chartsView.priceLineColor = mChartsRGB(0x4A90E2);
+    self.chartsView.priceTextColor = mChartsRGB(0xEF7482);
+    self.chartsView.countLineColor = mChartsRGB(0x7ED321);
+    self.chartsView.countTextColor = mChartsRGB(0x7ED321);
+    self.chartsView.yLabelFont = [UIFont systemFontOfSize:14];
+    self.chartsView.xLabelFont = [UIFont systemFontOfSize:14];
+    self.chartsView.valueLabelFont = [UIFont systemFontOfSize:21];
+    self.chartsView.legendFont = [UIFont systemFontOfSize:16];
     [self getData];
 //    _chartsView.frame =
    

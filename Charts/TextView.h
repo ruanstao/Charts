@@ -11,6 +11,7 @@
 @interface TextView : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
 
 - (void) showWithAnimation:(BOOL)animation;
 
